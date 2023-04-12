@@ -47,7 +47,7 @@ public class Consultore {
 			
 			caoAcompanhamentoSistema = iConsultorService.getCaoAcompanhamentoSistema(id);
 
-			if (caoAcompanhamentoSistema.isEmpty()) {
+			if (!caoAcompanhamentoSistema.isPresent()) {
 				RESPONSE.put("message:", "result not find");
 				return new ResponseEntity<Map<String,Object>>(RESPONSE, HttpStatus.NO_CONTENT);
 			} 
@@ -69,13 +69,13 @@ public class Consultore {
 			Optional<CaoUsuario> optionalCaoUsuario = iConsultorService
 					.getConsultore(new CaoUsuarioPk(coUsuario, noUsuario, iFormatDate.parseDate(dtAlteracao)));
 
-			if (optionalCaoUsuario.isEmpty()) {
+			if (!optionalCaoUsuario.isPresent()) {
 				return ResponseEntity.noContent().build();
 			} else {
 				return ResponseEntity.ok(optionalCaoUsuario.get());
 			}
 		} catch (Exception e) {
-			return ResponseEntity.internalServerError().build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 
 	}
@@ -91,13 +91,13 @@ public class Consultore {
 			Optional<PermissaoSistema> getPermissaoSistema = iConsultorService.getPermissaoSistema(
 					new PermissaoSistemaPk(coUsuario, coTipoUsuario, coSistema, iFormatDate.parseDate(dtAtualizacao)));
 
-			if (getPermissaoSistema.isEmpty()) {
+			if (!getPermissaoSistema.isPresent()) {
 				return ResponseEntity.noContent().build();
 			} else {
 				return ResponseEntity.ok(getPermissaoSistema.get());
 			}
 		} catch (Exception e) {
-			return ResponseEntity.internalServerError().build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
 
@@ -115,7 +115,7 @@ public class Consultore {
 				return ResponseEntity.ok(listCaoUsuarioDto);
 			}
 		} catch (Exception e) {
-			return ResponseEntity.internalServerError().build();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
 	

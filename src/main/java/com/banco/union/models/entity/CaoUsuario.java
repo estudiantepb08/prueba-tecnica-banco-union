@@ -12,6 +12,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/*@NamedNativeQuery(name = "findByNoUsuario",
+					query = " SELECT cau.no_usuario FROM caol.permissao_sistema ps " +
+							" CROSS JOIN caol.cao_usuario cau ON cau.co_usuario = ps.co_usuario " +
+							" WHERE ps.co_sistema = :coSistema AND ps.in_ativo = :inActivo AND ps.co_tipo_usuario IN (:coTipoUsuarios) ",
+					resultSetMapping = "CaoUsuarioDto")
+@SqlResultSetMapping(name = "CaoUsuarioDto",
+                     classes = @ConstructorResult(targetClass = CaoUsuarioDto.class,
+                                                  columns = {@ColumnResult(name = "noUsuario", type = String.class)}))*/
+
 @Entity
 @Table(name="cao_usuario")
 @Getter

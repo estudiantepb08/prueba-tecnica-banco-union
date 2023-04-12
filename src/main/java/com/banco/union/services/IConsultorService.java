@@ -6,7 +6,6 @@ import com.banco.union.models.entity.CaoUsuario;
 import com.banco.union.models.entity.CaoUsuarioPk;
 import com.banco.union.models.entity.PermissaoSistema;
 import com.banco.union.models.entity.PermissaoSistemaPk;
-
 import java.util.List;
 import java.util.Optional;
 

@@ -19,52 +19,52 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
-public class ConsultorServiceImpl implements IConsultorService{
+public class ConsultorServiceImpl implements IConsultorService {
 
-    @Autowired
-    private ICaoUsuarioRepository iCaoUsuarioRepository;
-    
-    @Autowired
-    private ICaoAcompanhamentoSistemaRepository iCaoAcompanhamentoSistemaRepository;
-    
-    @Autowired
-    private IPermissaoSistemaRepository iPermissaoSistemaRepository;
+	@Autowired
+	private ICaoUsuarioRepository iCaoUsuarioRepository;
 
-    private ModelMapper modelMapper;
+	@Autowired
+	private ICaoAcompanhamentoSistemaRepository iCaoAcompanhamentoSistemaRepository;
 
-    @Override
-    @Transactional
-    public Optional<CaoUsuario> getConsultore(CaoUsuarioPk caoUsuarioPk) {        
-        return iCaoUsuarioRepository.findById(caoUsuarioPk);
-    }
+	@Autowired
+	private IPermissaoSistemaRepository iPermissaoSistemaRepository;
+
+	private ModelMapper modelMapper;
 
 	@Override
+	@Transactional
+	public Optional<CaoUsuario> getConsultore(CaoUsuarioPk caoUsuarioPk) {
+		return iCaoUsuarioRepository.findById(caoUsuarioPk);
+	}
+
+	@Override
+	@Transactional
 	public Optional<CaoAcompanhamentoSistema> getCaoAcompanhamentoSistema(Long id) {
 		// TODO Auto-generated method stub
 		return iCaoAcompanhamentoSistemaRepository.findById(id);
 	}
 
-    @Override
-    public List<CaoUsuarioDto> getCaoUsuarioDto(Integer coSistema, char inActivo, List<Integer> coTipoUsuarios) {
-    	
-    	List<CaoUsuarioDto> listCaoUsuarioDto = new ArrayList<>();
-    	
-    	try {
-    	     listCaoUsuarioDto = iCaoUsuarioRepository.getCaoUsuarioDto(coSistema, inActivo, coTipoUsuarios);
-    	}catch(Exception e) {
-    		
-    	}
-    	/*
-    	listCaoUsuarioDto.stream()
-        .map((username) -> modelMapper.map(username, CaoUsuarioDto.class)).collect(Collectors.toList());
-    	*/
-    	return listCaoUsuarioDto;
-    }
+	@Override
+	@Transactional
+	public List<CaoUsuarioDto> getCaoUsuarioDto(Integer coSistema, char inActivo, List<Integer> coTipoUsuarios) {
 
-    @Override
+		List<CaoUsuarioDto> listCaoUsuarioDto = new ArrayList<>();
+
+		try {
+
+			listCaoUsuarioDto = iCaoUsuarioRepository.findByNoUsuario(coSistema, inActivo, coTipoUsuarios);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+
+		}
+
+		return listCaoUsuarioDto;
+	}
+
+	@Override
 	public Optional<PermissaoSistema> getPermissaoSistema(PermissaoSistemaPk permissaoSistemaPk) {
 		// TODO Auto-generated method stub
 		return iPermissaoSistemaRepository.findById(permissaoSistemaPk);
