@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PermissaoSistema implements Serializable{
+public class CaoPermissaoSistema implements Serializable{
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class PermissaoSistema implements Serializable{
 	private static final long serialVersionUID = 4580337239420730271L;
 	
 	@EmbeddedId
-	private PermissaoSistemaPk permissaoSistemaPk;
+	private CaoPermissaoSistemaPk permissaoSistemaPk;
 	@Column(name="in_ativo")
 	private char inActivo;
 	@Column(name="co_usuario_atualizacao")

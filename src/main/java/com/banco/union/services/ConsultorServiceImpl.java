@@ -1,11 +1,11 @@
 package com.banco.union.services;
 
-import com.banco.union.models.dto.CaoUsuarioDto;
+import com.banco.union.models.dto.ICaoUsuarioDto;
 import com.banco.union.models.entity.CaoAcompanhamentoSistema;
 import com.banco.union.models.entity.CaoUsuario;
 import com.banco.union.models.entity.CaoUsuarioPk;
-import com.banco.union.models.entity.PermissaoSistema;
-import com.banco.union.models.entity.PermissaoSistemaPk;
+import com.banco.union.models.entity.CaoPermissaoSistema;
+import com.banco.union.models.entity.CaoPermissaoSistemaPk;
 import com.banco.union.repository.ICaoAcompanhamentoSistemaRepository;
 import com.banco.union.repository.ICaoUsuarioRepository;
 import com.banco.union.repository.IPermissaoSistemaRepository;
@@ -49,23 +49,23 @@ public class ConsultorServiceImpl implements IConsultorService {
 
 	@Override
 	@Transactional
-	public List<CaoUsuarioDto> getCaoUsuarioDto(Integer coSistema, char inActivo, List<Integer> coTipoUsuarios) {
+	public List<ICaoUsuarioDto> getCaoUsuarioDto(Integer coSistema, char inActivo, List<Integer> coTipoUsuarios) {
 
-		List<CaoUsuarioDto> listCaoUsuarioDto = new ArrayList<>();
+		List<ICaoUsuarioDto> listICaoUsuarioDto = new ArrayList<>();
 
 		try {
 
-			listCaoUsuarioDto = iCaoUsuarioRepository.findByNoUsuario(coSistema, inActivo, coTipoUsuarios);
+			listICaoUsuarioDto = iCaoUsuarioRepository.findByNoUsuario(coSistema, inActivo, coTipoUsuarios);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 
 		}
 
-		return listCaoUsuarioDto;
+		return listICaoUsuarioDto;
 	}
 
 	@Override
-	public Optional<PermissaoSistema> getPermissaoSistema(PermissaoSistemaPk permissaoSistemaPk) {
+	public Optional<CaoPermissaoSistema> getPermissaoSistema(CaoPermissaoSistemaPk permissaoSistemaPk) {
 		// TODO Auto-generated method stub
 		return iPermissaoSistemaRepository.findById(permissaoSistemaPk);
 	}

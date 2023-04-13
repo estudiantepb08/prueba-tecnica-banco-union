@@ -13,10 +13,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RequestConsultore {
-	
-	private Integer coSistema;
-	private char inActivo;
-	private List<Integer> coTipoUsuario;
+public class ResponseConsultores {
+		
+	private List<String> consultores;
 
 }

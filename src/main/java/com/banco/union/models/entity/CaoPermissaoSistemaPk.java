@@ -19,7 +19,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PermissaoSistemaPk implements Serializable{
+public class CaoPermissaoSistemaPk implements Serializable{
 	
 	/**
 	 * 
@@ -53,7 +53,7 @@ public class PermissaoSistemaPk implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PermissaoSistemaPk other = (PermissaoSistemaPk) obj;
+		CaoPermissaoSistemaPk other = (CaoPermissaoSistemaPk) obj;
 		if (coSistema == null) {
 			if (other.coSistema != null)
 				return false;

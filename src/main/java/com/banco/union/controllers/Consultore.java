@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.banco.union.models.dto.CaoUsuarioDto;
+import com.banco.union.models.dto.ICaoUsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.banco.union.models.entity.CaoAcompanhamentoSistema;
 import com.banco.union.models.entity.CaoUsuario;
 import com.banco.union.models.entity.CaoUsuarioPk;
-import com.banco.union.models.entity.PermissaoSistema;
-import com.banco.union.models.entity.PermissaoSistemaPk;
+import com.banco.union.models.entity.CaoPermissaoSistema;
+import com.banco.union.models.entity.CaoPermissaoSistemaPk;
 import com.banco.union.services.IConsultorService;
 import com.banco.union.utils.IFormatDate;
 
 import jakarta.websocket.server.PathParam;
 
+@CrossOrigin(origins = {"http://localhost:8082"})
 @RestController
 @RequestMapping(value = "/api/prueba-banco-union")
 public class Consultore {
@@ -88,8 +90,8 @@ public class Consultore {
 
 		try {
 			
-			Optional<PermissaoSistema> getPermissaoSistema = iConsultorService.getPermissaoSistema(
-					new PermissaoSistemaPk(coUsuario, coTipoUsuario, coSistema, iFormatDate.parseDate(dtAtualizacao)));
+			Optional<CaoPermissaoSistema> getPermissaoSistema = iConsultorService.getPermissaoSistema(
+					new CaoPermissaoSistemaPk(coUsuario, coTipoUsuario, coSistema, iFormatDate.parseDate(dtAtualizacao)));
 
 			if (!getPermissaoSistema.isPresent()) {
 				return ResponseEntity.noContent().build();
@@ -107,12 +109,12 @@ public class Consultore {
 											@PathParam("inActivo") char inActivo){
 		try {
 
-			 List<CaoUsuarioDto> listCaoUsuarioDto = iConsultorService.getCaoUsuarioDto(coSistema, inActivo, Arrays.asList(coTipoUsuario));
+			 List<ICaoUsuarioDto> listICaoUsuarioDto = iConsultorService.getCaoUsuarioDto(coSistema, inActivo, Arrays.asList(coTipoUsuario));
 
-			if (listCaoUsuarioDto.isEmpty()) {
+			if (listICaoUsuarioDto.isEmpty()) {
 				return ResponseEntity.noContent().build();
 			} else {
-				return ResponseEntity.ok(listCaoUsuarioDto);
+				return ResponseEntity.ok(listICaoUsuarioDto);
 			}
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
