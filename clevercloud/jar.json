@@ -1,0 +1,9 @@
+{
+  "build": {
+    "type": "maven",
+    "goal": "package"
+  },
+  "deploy": {
+    "jarName": "target/prueba-tecnica-banco-union-0.0.1-SNAPSHOT.jar"
+  }
+}
