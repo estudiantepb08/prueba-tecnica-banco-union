@@ -27,7 +27,7 @@ import com.banco.union.utils.IFormatDate;
 
 import jakarta.websocket.server.PathParam;
 
-@CrossOrigin(origins = {"http://localhost:8082"})
+@CrossOrigin(origins = {"https://app-prueba-banco-union-production.up.railway.app:3000"})
 @RestController
 @RequestMapping(value = "/api/prueba-banco-union")
 public class Consultore {
