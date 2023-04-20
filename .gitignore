@@ -5,6 +5,7 @@ target/generated-test-sources/
 target/maven-archiver/
 target/maven-status/
 target/prueba-tecnica-banco-union-0.0.1-SNAPSHOT.jar.original
+target/test-classes/
 
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
